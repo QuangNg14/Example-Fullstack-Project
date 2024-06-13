@@ -33,7 +33,6 @@ db = SQLAlchemy(app)
 
 
 def create_table_if_not_exists():
-    print("inside create_table_if_not_exists")
     with app.app_context():
         with db.engine.connect() as conn:
             # Check if the table exists
