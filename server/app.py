@@ -78,7 +78,6 @@ def parse_item(prompt):
         max_tokens=50,
         temperature=0.3,
     )
-    print(response)
     result = response.choices[0].message["content"].strip()
     return result
 
