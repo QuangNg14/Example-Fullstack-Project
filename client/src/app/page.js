@@ -16,7 +16,7 @@ export default function Home() {
 
   const getAll = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/items");
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items`);
       const data = await response.json();
       setItems(data);
     } catch (error) {
@@ -31,7 +31,7 @@ export default function Home() {
   // Add a new item
   const add = async (params) => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/items", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,9 +50,12 @@ export default function Home() {
   const remove = async (params) => {
     console.log(params);
     try {
-      const response = await fetch(`http://127.0.0.1:5000/items/${params.id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/items/${params.id}`,
+        {
+          method: "DELETE",
+        }
+      );
       setRefresh(!refresh);
     } catch (error) {
       console.error("Failed to delete item:", error);
@@ -62,16 +65,19 @@ export default function Home() {
   // Update an item by ID
   const update = async (params) => {
     try {
-      const response = await fetch(`http://127.0.0.1:5000/items/${params.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: params.newName,
-          category: params.newCategory,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/items/${params.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: params.newName,
+            category: params.newCategory,
+          }),
+        }
+      );
       const data = await response.json();
       console.log(data);
       setRefresh(!refresh);
@@ -84,7 +90,7 @@ export default function Home() {
   const getByCat = async (params) => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/items/category/${params.category}`
+        `${process.env.NEXT_PUBLIC_API_URL}/items/category/${params.category}`
       );
       const data = await response.json();
       setItems(data);
@@ -95,13 +101,16 @@ export default function Home() {
 
   const addItemFromNaturalLanguage = async (input) => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/parse_item", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt: input }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/parse_item`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt: input }),
+        }
+      );
 
       const data = await response.json();
       const parsedItem = data.parsed_item;
