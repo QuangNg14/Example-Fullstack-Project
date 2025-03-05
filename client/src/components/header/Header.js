@@ -6,16 +6,6 @@ import { Button, Flex } from "antd";
 const DefaultButtons = ({ currentRoute }) => {
   const router = useRouter();
   switch (currentRoute) {
-    case "/about":
-      return (
-        <Flex gap="small" wrap>
-          <Button onClick={() => router.push("/")}>Main Shopping List</Button>
-          <Button type="primary" onClick={() => router.push("/about")}>
-            About
-          </Button>
-          <Button onClick={() => router.push("/user")}>Users</Button>
-        </Flex>
-      );
     case "/user":
       return (
         <Flex gap="small" wrap>
