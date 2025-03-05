@@ -10,10 +10,10 @@ const DefaultButtons = ({ currentRoute }) => {
       return (
         <Flex gap="small" wrap>
           <Button onClick={() => router.push("/")}>Main Shopping List</Button>
-          <Button type="primary" onClick={() => router.push("/about")}>
+          <Button type="prim  ary" onClick={() => router.push("/about")}>
             About
           </Button>
-          <Button onClick={() => router.push("/user")}>Users</Button>
+          <Button onClick={() => router.push("/user")}>Us ers</Button>
         </Flex>
       );
     case "/user123":
